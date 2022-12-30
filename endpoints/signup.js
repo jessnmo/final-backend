@@ -1,9 +1,10 @@
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 
-const User = require('../models/user');
+//const User = require('../models/user');
+import { User } from '../models/user';
 
-export const signup = async (req, res) => {
+const signup = async (req, res) => {
 	const { username, email, password } = req.body;
 	try {
 		const salt = bcrypt.genSaltSync();
@@ -21,10 +22,10 @@ export const signup = async (req, res) => {
 			res.status(201).json({
 				success: true,
 				response: {
+					userId: newUser._id,
 					username: newUser.username,
 					email: newUser.email,
 					accessToken: newUser.accessToken,
-					userId: newUser._id,
 				},
 			});
 		}
@@ -56,3 +57,5 @@ export const signup = async (req, res) => {
 		}
 	}
 };
+
+module.exports = { signup };

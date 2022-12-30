@@ -25,8 +25,9 @@ app.use(express.json());
 app.get('/', (req, res) => {
 	res.send('Test test');
 });
-/* app.post('./login', login);
-app.post('./signup', signup); */
+
+app.post('/login', login);
+app.post('/signup', signup);
 
 // Start the server
 app.listen(port, () => {
