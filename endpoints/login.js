@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
+import mongoose from 'mongoose';
+const User = require('../models/user');
 
-const User = require('../Schemas/user');
-
-export const login = async (req, res) => {
+const login = async (req, res) => {
 	const { username, password } = req.body;
 	try {
 		const user = await User.findOne({ username });
@@ -18,14 +18,16 @@ export const login = async (req, res) => {
 		} else {
 			res.status(400).json({
 				success: false,
-				response: 'Incorrect username + password combination, try again',
+				response: 'Incorrect username + password combination, please try again',
 			});
 		}
 	} catch (err) {
-		res.status().json({
+		res.status(400).json({
 			success: false,
 			response: 'Something gone wrong with the website',
 			error: error.err,
 		});
 	}
 };
+
+module.exports = { login };

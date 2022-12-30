@@ -1,4 +1,4 @@
-const User = require('../Schemas/user');
+const User = require('../models/user');
 
 export const authenticateUser = async (req, res, next) => {
 	const accessToken = req.header('Authorization');

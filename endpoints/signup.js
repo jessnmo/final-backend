@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 
-const User = require('../Schemas/user');
+const User = require('../models/user');
 
 export const signup = async (req, res) => {
 	const { username, email, password } = req.body;
@@ -13,11 +13,11 @@ export const signup = async (req, res) => {
 				response: 'Password has to be 8 characters or longer',
 			});
 		} else {
-			const newUser = await new User({
+			const newUser = await User.create({
 				username: username,
 				email: email.toLowerCase(),
 				password: bcrypt.hashSync(password, salt),
-			}).save();
+			});
 			res.status(201).json({
 				success: true,
 				response: {
