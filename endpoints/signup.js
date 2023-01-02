@@ -35,7 +35,7 @@ const signup = async (req, res) => {
 			res.status(400).json({
 				success: false,
 				response: 'Please enter email to proceed',
-				error: error,
+				error: err.errors,
 			});
 		} else if (existUser) {
 			res.status(400).json({
@@ -52,7 +52,7 @@ const signup = async (req, res) => {
 		} else {
 			res.status(400).json({
 				success: false,
-				response: error.err,
+				response: err.errors,
 			});
 		}
 	}

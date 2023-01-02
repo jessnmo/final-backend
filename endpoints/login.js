@@ -1,9 +1,10 @@
 import bcrypt from 'bcrypt';
-import mongoose from 'mongoose';
+//import mongoose from 'mongoose';
 const User = require('../models/user');
 
 const login = async (req, res) => {
 	const { username, password } = req.body;
+
 	try {
 		const user = await User.findOne({ username });
 		if (user && bcrypt.compareSync(password, user.password)) {
@@ -11,21 +12,20 @@ const login = async (req, res) => {
 				success: true,
 				response: {
 					username: user.username,
-					userId: usr._id,
+					id: user._id,
 					accessToken: user.accessToken,
 				},
 			});
 		} else {
 			res.status(400).json({
 				success: false,
-				response: 'Incorrect username + password combination, please try again',
+				response: "Credentials didn't match",
 			});
 		}
 	} catch (err) {
-		res.status(400).json({
+		res.status(500).json({
 			success: false,
-			response: 'Something gone wrong with the website',
-			error: error.err,
+			response: err,
 		});
 	}
 };

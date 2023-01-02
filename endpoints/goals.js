@@ -1,10 +1,9 @@
 import { goalsModel } from '../models/goalsModel';
-//import { authenticateUser } from './authenticateUser';
 
-const getGoals = async (req, res) => {
+const getGoals = async (res) => {
 	try {
-		const goalItems = await goalsModel.find({}).limit(20);
-		res.status(201).json({
+		const goalItems = await goalsModel.find({});
+		res.status(200).json({
 			success: true,
 			response: goalItems,
 		});

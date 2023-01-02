@@ -15,7 +15,7 @@ export const authenticateUser = async (req, res, next) => {
 	} catch (err) {
 		res.status(500).json({
 			success: false,
-			response: error.err,
+			response: err.errors,
 		});
 	}
 };
