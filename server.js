@@ -5,7 +5,8 @@ import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 import { login } from './endpoints/login';
 import { signup } from './endpoints/signup';
-//import { authenticateUser } from './endpoints/authenticateUser';
+import { authenticateUser } from './endpoints/authenticateUser';
+import { getGoals, postGoals } from './endpoints/goals';
 
 // Defines the port the app will run on. Defaults to 8080, but can be overridden
 // when starting the server. Example command to overwrite PORT env variable value:
@@ -28,6 +29,10 @@ app.get('/', (req, res) => {
 
 app.post('/login', login);
 app.post('/signup', signup);
+
+app.get('/goals', authenticateUser);
+app.get('/goals', getGoals);
+app.post('/goals', postGoals);
 
 // Start the server
 app.listen(port, () => {
