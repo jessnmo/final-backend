@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 //import mongoose from 'mongoose';
-const User = require('../models/user');
+//const User = require('../models/user');
+import { User } from '../models/user';
 
 const login = async (req, res) => {
 	const { username, password } = req.body;
