@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 //import mongoose from 'mongoose';
-//const User = require('../models/user');
+//const User = require('../models/user'); this method didn't work
 import { User } from '../models/user';
 
 const login = async (req, res) => {

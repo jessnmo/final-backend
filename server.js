@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import crypto from 'crypto';
-import bcrypt from 'bcrypt';
+/* import crypto from 'crypto';
+import bcrypt from 'bcrypt'; */
 import { login } from './endpoints/login';
 import { signup } from './endpoints/signup';
 import { authenticateUser } from './endpoints/authenticateUser';
@@ -23,16 +23,16 @@ app.use(cors());
 app.use(express.json());
 
 //Routes
-app.get('/', (res) => {
+app.get('/', (req, res) => {
 	res.send('Test test');
 });
 
 app.post('/login', login);
 app.post('/signup', signup);
 
-app.get('/goals', authenticateUser);
-app.get('/goals', getGoals);
 app.post('/goals', postGoals);
+app.get('/goals', getGoals);
+app.get('/goals', authenticateUser);
 
 // Start the server
 app.listen(port, () => {

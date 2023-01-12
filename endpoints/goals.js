@@ -2,16 +2,13 @@ import { goalsModel } from '../models/goalsModel';
 
 const getGoals = async (res) => {
 	try {
-		const goalItems = await goalsModel.find({});
-		res.status(200).json({
-			success: true,
-			response: goalItems,
-		});
+		const goalItems = await goalsModel.find({}).limit(5); //need to update this to find the goals that match the accessToken
+		res.status(200).json({ success: true, response: goalItems });
 	} catch (err) {
 		res.status(400).json({
 			success: false,
-			response: 'Cannot get goals',
-			error: err.errors,
+			message: 'Cannot get goals',
+			response: err.errors,
 		});
 	}
 };
@@ -30,7 +27,8 @@ const postGoals = async (req, res) => {
 	} catch (err) {
 		res.status(400).json({
 			success: false,
-			response: 'Cannot post new goal item',
+			message: 'Cannot post this goal',
+			response: err,
 		});
 	}
 };
