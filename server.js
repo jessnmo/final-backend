@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt'; */
 import { login } from './endpoints/login';
 import { signup } from './endpoints/signup';
-import { authenticateUser } from './endpoints/authenticateUser';
+//import { authenticateUser } from './endpoints/authenticateUser';
 import { getGoals, postGoals } from './endpoints/goals';
 
 // Defines the port the app will run on. Defaults to 8080, but can be overridden
@@ -32,7 +32,6 @@ app.post('/signup', signup);
 
 app.post('/goals', postGoals);
 app.get('/goals', getGoals);
-app.get('/goals', authenticateUser);
 
 // Start the server
 app.listen(port, () => {

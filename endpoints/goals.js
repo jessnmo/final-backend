@@ -1,9 +1,19 @@
 import { goalsModel } from '../models/goalsModel';
+import { User } from '../models/user';
 
-const getGoals = async (res) => {
+const getGoals = async (req, res) => {
 	try {
-		const goalItems = await goalsModel.find({}).limit(5); //need to update this to find the goals that match the accessToken
-		res.status(200).json({ success: true, response: goalItems });
+		const accessToken = req.headers.authorization;
+		const user = await User.findOne({ accessToken });
+		if (user) {
+			const goalItems = await goalsModel.find({ accessToken }).limit(5);
+			res.status(200).json({ success: true, response: goalItems });
+		} else {
+			res.status(401).json({
+				success: false,
+				response: 'Please log in',
+			});
+		}
 	} catch (err) {
 		res.status(400).json({
 			success: false,
