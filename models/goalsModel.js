@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const goalsSchema = new mongoose.Schema({
-	message: {
+	title: {
 		type: String,
 		required: true,
 	},
@@ -9,6 +9,10 @@ const goalsSchema = new mongoose.Schema({
         type:Date,
         default:()=> new Date()
     } */
+	/* completed: {
+		type: Boolean,
+		//required: true,
+	}, */
 });
 
 const goalsModel = mongoose.model('goalsModel', goalsSchema);
